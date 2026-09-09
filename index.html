@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title id="page-title">Sports77 HD Stream</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: #000;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       WHATSAPP BANNER
+       ========================= */
+
+    .wa-banner {
+      width: 100%;
+      height: 58px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+      padding: 7px 10px;
+
+      background: linear-gradient(
+        90deg,
+        #075e25,
+        #16a34a
+      );
+
+      color: #fff;
+      text-decoration: none;
+
+      overflow: hidden;
+    }
+
+    .wa-icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #fff;
+      border-radius: 50%;
+
+      font-size: 21px;
+    }
+
+    .wa-content {
+      flex: 1;
+      min-width: 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .wa-title {
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 16px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wa-title span {
+      color: #6dff91;
+    }
+
+    .wa-subtitle {
+      margin-top: 2px;
+
+      font-size: 9px;
+      line-height: 12px;
+
+      opacity: .9;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wa-join {
+      flex-shrink: 0;
+
+      padding: 7px 12px;
+
+      background: #fff;
+      color: #128c3a;
+
+      border-radius: 18px;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       STREAM
+       ========================= */
+
+    .stream-box {
+      position: relative;
+
+      width: 100%;
+      height: calc(100vh - 58px);
+
+      min-height: 300px;
+
+      background: #000;
+
+      overflow: hidden;
+    }
+
+    .stream-box iframe {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      border: 0;
+
+      background: #000;
+
+      touch-action: auto;
+    }
+
+    /* =========================
+       IKLAN - SENTUH PERTAMA
+       ========================= */
+
+    #ad-overlay {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 10;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #ad-overlay.hidden {
+      display: none;
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 480px) {
+
+      .wa-banner {
+        height: 58px;
+        padding: 7px 9px;
+        gap: 8px;
+      }
+
+      .wa-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+
+        font-size: 19px;
+      }
+
+      .wa-title {
+        font-size: 12px;
+      }
+
+      .wa-subtitle {
+        font-size: 8px;
+      }
+
+      .wa-join {
+        padding: 7px 10px;
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+    <!-- =========================
+       BANNER JOIN WHATSAPP
+       ========================= -->
+  <a
+    href="https://whatsapp.com/channel/0029VbD5rXAJ93wYhP08tc3D"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="wa-banner"
+  >
+    <div class="wa-icon">💬</div>
+
+    <div class="wa-content">
+      <div class="wa-title">
+        Join Saluran <span>WhatsApp Sports77</span>
+      </div>
+
+      <div class="wa-subtitle">
+        Dapatkan update link live streaming, jadwal & info terbaru!
+      </div>
+    </div>
+
+    <div class="wa-join">JOIN</div>
+  </a>
+
+
+  <!-- =========================
+       STREAM
+       ========================= -->
+
+  <main class="stream-box">
+
+    <iframe
+      id="video-iframe"
+      src="about:blank"
+      title="Live Stream"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      allowfullscreen>
+    </iframe>
+<!--
+      Menangkap sentuhan pertama.
+      Setelah diklik, overlay langsung hilang.
+    -->
+    <div
+      id="ad-overlay"
+      role="button"
+      aria-label="Lanjutkan ke video"
+    ></div>
+
+  </main>
+
+
+  <script>
+
+    /* =========================
+       DAFTAR PERTANDINGAN
+       ========================= */
+
+    const matches = {
+
+      "aela": {
+        title: "ucl1",
+        src: "https://starballtv010.blogspot.com/2026/09/aela.html"
+      },
+
+      "clas": {
+        title: "ucl2",
+        src: "https://starballtv010.blogspot.com/2026/09/clas.html"
+      },
+
+      "itfa": {
+        title: "ligaarab",
+        src: "https://starballtv010.blogspot.com/2026/09/itfa.html"
+      },
+
+      "main": {
+        title: "ucl",
+        src: "https://starballtv010.blogspot.com/2026/09/main.html"
+      },
+
+      "poma": {
+        title: "Real Madrid vs milan",
+        src: "https://starballtv010.blogspot.com/2026/09/poma.html"
+      },
+
+      "libe": {
+        title: "lili vs betis",
+        src: "https://starballtv010.blogspot.com/2026/09/libe.html"
+      },
+
+      "dovi": {
+        title: "dortmund vs vilareal",
+        src: "https://starballtv010.blogspot.com/2026/09/dovi.html"
+      },
+
+      "alqadsiah": {
+        title: "Al Qadsiah vs Al Faisaly",
+        src: "https://starballtv010.blogspot.com/2026/08/qafa.html"
+      },
+
+      "intermilan": {
+        title: "Cagliari vs Inter Milan",
+        src: "https://starballtv010.blogspot.com/2026/08/cain.html"
+      },
+
+      "gogo": {
+        title: "Lazio vs Genoa",
+        src: "https://sabutv.com/server/event.m3u8?ch=12&proxy=1"
+      },
+
+      "viral": {
+        title: "AS Monaco vs Marseille",
+        src: "https://aceimg.com/upload/?f=v5yPsxHaU.mp4"
+      },
+
+      "backupreal": {
+        title: "real backup",
+        src: "https://sabutv.com/server/event.m3u8?ch=31&proxy=1"
+      },
+
+      "citybk": {
+        title: "UCLbackup",
+        src: "https://sabutv.com/server/event.m3u8?ch=16&proxy=1"
+      }
+
+    };
+
+
+    /* =========================
+       AMBIL ?id=
+       ========================= */
+
+    const params =
+      new URLSearchParams(window.location.search);
+
+    const matchId =
+      (params.get("id") || "")
+        .trim()
+        .toLowerCase();
+
+
+    /* =========================
+       FALLBACK
+       ========================= */
+
+    const fallbackMatch = {
+      title: "Live Stream",
+      src: "about:blank"
+    };
+
+
+    /* =========================
+       PILIH STREAM
+       ========================= */
+
+    const activeMatch =
+      matches[matchId] || fallbackMatch;
+
+
+    /* =========================
+       LOAD IFRAME
+       ========================= */
+
+    const iframe =
+      document.getElementById("video-iframe");
+
+    iframe.src = activeMatch.src;
+
+
+    /* =========================
+       JUDUL
+       ========================= */
+
+    document.title =
+      "Sports77HD - " + activeMatch.title;
+
+    document.getElementById("page-title")
+      .textContent =
+      "Sports77HD - " + activeMatch.title;
+
+
+    /* =========================
+       IKLAN SHOPEE
+       ========================= */
+
+    const overlay =
+      document.getElementById("ad-overlay");
+
+    const SHOPEE_URL =
+      "https://s.shopee.co.id/8plcY8LGXi";
+
+
+    let adOpened = false;
+
+
+    overlay.addEventListener(
+      "click",
+      function () {
+
+        if (adOpened) {
+          return;
+        }
+
+        adOpened = true;
+
+        /*
+          Buka iklan dari aksi klik user.
+        */
+        window.open(
+          SHOPEE_URL,
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+        /*
+          Lepaskan overlay setelah
+          klik pertama.
+        */
+        overlay.classList.add("hidden");
+
+      },
+      {
+        once: true
+      }
+    );
+
+  </script>
+
+</body>
+</html>
