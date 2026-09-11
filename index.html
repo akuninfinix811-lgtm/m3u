@@ -144,88 +144,34 @@
     }
 
     /* =========================
-       IKLAN SHOPEE (OTOMATIS DETIK KE-5)
+       IKLAN SHOPEE (AKTIF SETELAH 5 DETIK VIDEO BERJALAN)
        ========================= */
     const overlay = document.getElementById("ad-overlay");
     const SHOPEE_URL = "https://s.shopee.co.id/8plcY8LGXi";
     let adOpened = false;
 
-    // Sembunyikan overlay sejak awal agar pengguna tidak terhalang
+    // Sembunyikan overlay di awal agar user bebas memutar video
     overlay.classList.add("hidden");
 
-    // Hitung waktu 5 detik saat video mulai diputar
+    // Hitung 5 detik dari awal video berputar
     video.addEventListener("playing", function () {
       setTimeout(() => {
         if (!adOpened) {
-          adOpened = true;
-          
-          // Buka iklan Shopee secara otomatis
-          window.open(SHOPEE_URL, "_blank", "noopener,noreferrer");
-          
-          // Sembunyikan overlay agar layar tetap aman dipencet
-          overlay.classList.add("hidden");
+          // Aktifkan overlay transparan tepat di detik ke-5
+          overlay.classList.remove("hidden");
         }
       }, 5000);
     }, { once: true });
-  </script>
 
-</body>
-</html>
-"barka": { title: "UCLbackup", src: "https://sabutv.com/server/event.m3u8?ch=33&proxy=1" }
-    };
-
-    /* =========================
-       PARSING PARAMETER URL (?id=)
-       ========================= */
-    const params = new URLSearchParams(window.location.search);
-    const matchId = (params.get("id") || "").trim().toLowerCase();
-
-    const fallbackMatch = { title: "Live Stream", src: "" };
-    const activeMatch = matches[matchId] || fallbackMatch;
-
-    /* =========================
-       PEMUTARAN VIDEO
-       ========================= */
-    const video = document.getElementById("video-player");
-
-    if (activeMatch.src) {
-      if (activeMatch.src.includes(".m3u8")) {
-        if (Hls.isSupported()) {
-          const hls = new Hls();
-          hls.loadSource(activeMatch.src);
-          hls.attachMedia(video);
-        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-          // Dukungan native untuk Safari / iOS
-          video.src = activeMatch.src;
-        }
-      } else {
-        // Direct stream file .mp4
-        video.src = activeMatch.src;
-      }
-    }
-
-    // Update judul halaman
-    document.title = "RedFlix - " + activeMatch.title;
-    const pageTitleEl = document.getElementById("page-title");
-    if (pageTitleEl) {
-      pageTitleEl.textContent = "RedFlix - " + activeMatch.title;
-    }
-
-    /* =========================
-       IKLAN SHOPEE (CLICKUNDER)
-       ========================= */
-    const overlay = document.getElementById("ad-overlay");
-    const SHOPEE_URL = "https://s.shopee.co.id/8plcY8LGXi";
-    let adOpened = false;
-
+    // Saat pengguna mengeklik area video di atas detik ke-5, iklan Shopee terbuka
     overlay.addEventListener("click", function () {
       if (adOpened) return;
 
       adOpened = true;
       window.open(SHOPEE_URL, "_blank", "noopener,noreferrer");
-      overlay.classList.add("hidden");
+      overlay.classList.add("hidden"); // Hilangkan overlay setelah klik
       video.play().catch(() => {});
-    }, { once: true });
+    });
   </script>
 
 </body>
