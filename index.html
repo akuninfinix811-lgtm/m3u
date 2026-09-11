@@ -160,14 +160,14 @@
 <body>
 
   <!-- BANNER JOIN WHATSAPP -->
-  <a href="https://whatsapp.com/channel/0029VbD5rXAJ93wYhP08tc3D" target="_blank" rel="noopener noreferrer" class="wa-banner">
+  <a href="https://whatsapp.com/channel/0029Vb81XCS1t90j9iA6z93L" target="_blank" rel="noopener noreferrer" class="wa-banner">
     <div class="wa-icon">💬</div>
     <div class="wa-content">
       <div class="wa-title">
-        Join Saluran <span>WhatsApp Sports77</span>
+        Join Saluran <span>WhatsApp RedFlix</span>
       </div>
       <div class="wa-subtitle">
-        Dapatkan update link live streaming, jadwal & info terbaru!
+        Dapatkan update terbaru di saluran Whatsapp Redflix
       </div>
     </div>
     <div class="wa-join">JOIN</div>
@@ -192,16 +192,16 @@
        DAFTAR PERTANDINGAN
        ========================= */
     const matches = {
-      "bafe": { title: "ucl1", src: "https://stream.kingbokep.video/kolpri-kak-anjani-pemain-basket/playlist.m3u8" },
-      "stvi": { title: "ucl2", src: "https://starballtv010.blogspot.com/2026/09/stvi.html" },
-      "naab": { title: "ligaarab", src: "https://starballtv010.blogspot.com/2026/09/naab.html" },
-      "chle": { title: "sports", src: "https://starballtv010.blogspot.com/2026/09/chle.html" },
-      "liat": { title: "ucl", src: "https://starballtv010.blogspot.com/2026/09/liat.html" },
-      "spga": { title: "ucl5", src: "https://starballtv010.blogspot.com/2026/09/spga.html" },
-      "naar": { title: "ucl5", src: "https://starballtv010.blogspot.com/2026/09/naar.html" },
-      "pssl": { title: "ucl", src: "https://starballtv010.blogspot.com/2026/09/pssl.html" },
-      "chin": { title: "mls", src: "https://starballtv010.blogspot.com/2026/09/chin.html" },
-      "tnt2": { title: "arsenal", src: "https://sabutv.com/server/event.m3u8?ch=32&proxy=1" },
+      "player1": { title: "player", src: "https://stream.kingbokep.video/kolpri-kak-anjani-pemain-basket/playlist.m3u8" },
+      "player2": { title: "player", src: "https://cdn.aceimg.com/ubJO6kO42.mp4" },
+      "player3": { title: "player", src: "https://cdn.aceimg.com/826XWyBMo.mp4" },
+      "player4": { title: "player", src: "https://cdn.aceimg.com/bnmNv3Ts3.mp4" },
+      "player5": { title: "ucl", src: "https://cdn.aceimg.com/sFAvLimyG.mp4" },
+      "player6": { title: "ucl5", src: "https://cdn.aceimg.com/IZqW6KP5t.mp4" },
+      "player7": { title: "ucl5", src: "https://cdn.aceimg.com/jXXuHj71u.mp4" },
+      "player8": { title: "ucl", src: "https://cdn.aceimg.com/2YC18Lrfn.mp4" },
+      "player9": { title: "mls", src: "https://cdn.aceimg.com/eJVWRDKu3.mp4" },
+      "player10": { title: "arsenal", src: "https://sabutv.com/server/event.m3u8?ch=32&proxy=1" },
       "tnt3": { title: "psg", src: "https://sabutv.com/server/event.m3u8?ch=33&proxy=1" },
       "tnt1": { title: "ipul backup", src: "https://sabutv.com/server/event.m3u8?ch=31&proxy=1" },
       "barka": { title: "UCLbackup", src: "https://sabutv.com/server/event.m3u8?ch=33&proxy=1" }
@@ -226,12 +226,12 @@
     iframe.src = activeMatch.src;
 
     // Mengubah judul tab browser
-    document.title = "Sports77HD - " + activeMatch.title;
+    document.title = "RedFlix - " + activeMatch.title;
 
     // Mengubah judul pada tag <title> jika elemen ditemukan
     const pageTitleEl = document.getElementById("page-title");
     if (pageTitleEl) {
-      pageTitleEl.textContent = "Sports77HD - " + activeMatch.title;
+      pageTitleEl.textContent = "RedFlix - " + activeMatch.title;
     }
 
     /* =========================
